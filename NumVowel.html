@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Подсчет гласных</title>
+</head>
+<body>
+<input type=button value='Жми!' onclick='Test()'>
+<script>
+    "use strict"
+
+    function NumVowel(stroka) {
+        let vowel = ["и", "ы", "у", "э", "о", "а", "е", "ё", "ю", "я", "И", "Ы", "У", "Э", "О", "А", "Е", "Ё", "Ю", "Я"];
+        let vowelsCounter = 0;
+
+        for (var i = 0; i < stroka.length; i++) {
+            for (var v = 0; v < 20; v++) {
+                if (stroka[i] == vowel[v]) vowelsCounter++;
+            }
+        }
+        return vowelsCounter + GetNumWord(vowelsCounter, " гласная", " гласные", " гласных");
+
+        function GetNumWord(vowelsCounter, Word1, Word2, Word5) {
+            let DD = vowelsCounter % 100;
+            if ((DD >= 11) && (DD <= 19))
+                return Word5;
+            let D = vowelsCounter % 10;
+            if (D == 1)
+                return Word1;
+            if ((D >= 2) && (D <= 4))
+                return Word2;
+            return Word5;
+        }
+    }
+
+    function Test() {
+        let strokaS = prompt('Введите строку:');
+        let stroka = String(strokaS);
+        alert('В вашей строке ' + NumVowel(stroka) + "!");
+    }
+</script>
+</body>
+</html>
