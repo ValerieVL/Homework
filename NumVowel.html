@@ -20,16 +20,16 @@
         }
         return vowelsCounter + GetNumWord(vowelsCounter, " гласная", " гласные", " гласных");
 
-        function GetNumWord(vowelsCounter, Word1, Word2, Word5) {
-            let DD = vowelsCounter % 100;
-            if ((DD >= 11) && (DD <= 19))
-                return Word5;
-            let D = vowelsCounter % 10;
-            if (D == 1)
-                return Word1;
-            if ((D >= 2) && (D <= 4))
-                return Word2;
-            return Word5;
+        function GetNumWord(vowelsCounter, word1, word2, word5) {
+            let dd = vowelsCounter % 100;
+            if ((dd >= 11) && (dd <= 19))
+                return word5;
+            let d = vowelsCounter % 10;
+            if (d == 1)
+                return word1;
+            if ((d >= 2) && (d <= 4))
+                return word2;
+            return word5;
         }
     }
 
