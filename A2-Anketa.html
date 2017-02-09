@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Анкета</title>
+</head>
+<body>
+<input type=button value='Заполнить анкету' onclick='anketa()'>
+<script>
+    "use strict"
+
+    function anketa() {
+        let surname = prompt('Ваша фамилия', 'Иванов');
+        while (!surname) {
+            surname = prompt('Ваша фамилия (вы ничего не ввели)');
+        }
+
+        let name = prompt('Ваше имя', 'Иван');
+        while (!name) {
+            name = prompt('Ваше имя (вы ничего не ввели)');
+        }
+
+        let patronymic = prompt('Ваше отчество', 'Иванович');
+        while (!patronymic) {
+            patronymic = prompt('Ваше отчество (вы ничего не ввели)');
+        }
+
+        let
+                ageS = prompt('Ваш возраст (в годах)', '0'),
+                age = parseInt(ageS);
+
+        while (isNaN(age) || !age) {
+            age = prompt('Введите возраст правильно! (в годах)');
+        }
+
+        let
+                ageDays = age * 365,
+                ageAfter5 = age + 5,
+                sex = confirm("Ваш пол - мужской?"),
+                resultSelectM = 'мужской',
+                resultSelectF = 'женский',
+                retirementAgeY = 'да',
+                retirementAgeN = 'нет';
+
+        let resultSelect = (sex == false) ? resultSelectF : resultSelectM;
+        let retirementAge = (age >= 55 && resultSelectF || age >= 60 && resultSelectM) ? retirementAgeY : retirementAgeN;
+
+        alert('Ваше ФИО: ' + surname + ' ' + name + ' ' + patronymic + '\nВаш возраст, лет: ' + age + '\nВаш возраст, дней: ' + ageDays + '\nЧерез 5 лет вам будет: ' + ageAfter5 + '\nВаш пол: ' + resultSelect + '\nПенсионный возраст: ' + retirementAge);
+    }
+
+</script>
+</body>
+</html>
