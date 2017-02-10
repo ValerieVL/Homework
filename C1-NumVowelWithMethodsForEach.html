@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Подсчет гласных с использованием forEach</title>
+</head>
+<body>
+<input type=button value='Нажмите для ввода строки!' onclick='test()'>
+<script>
+    "use strict"
+    function numVowel(strokaS) {
+        let
+                strokaArr = strokaS.toLowerCase().split(''),
+                vowelsCounter = 0;
+        let vowel = {
+            "и": 1,
+            "ы": 1,
+            "у": 1,
+            "э": 1,
+            "о": 1,
+            "а": 1,
+            "е": 1,
+            "ё": 1,
+            "ю": 1,
+            "я": 1
+        };
+
+        function F(V, I, A) {
+            if (V in vowel)
+                vowelsCounter++;
+        }
+
+        strokaArr.forEach(F);
+        return vowelsCounter;
+    }
+
+    function getNumWord(vowelsCounter, word1, word2, word5) {
+        let dd = vowelsCounter % 100;
+        if ((dd >= 11) && (dd <= 19))
+            return word5;
+        let d = vowelsCounter % 10;
+        if (d == 1)
+            return word1;
+        if ((d >= 2) && (d <= 4))
+            return word2;
+        return word5;
+    }
+
+    function test() {
+        let
+                stroka = prompt('Введите строку:'),
+                strokaS = String(stroka),
+                vowelsCounter = numVowel(strokaS);
+        alert('В вашей строке ' + vowelsCounter + " " + getNumWord(vowelsCounter, "гласная", "гласные", "гласных") + "!");
+    }
+</script>
+</body>
+</html>
