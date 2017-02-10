@@ -27,10 +27,10 @@
 
         let
                 ageS = prompt('Ваш возраст (в годах)', '0'),
-                age = parseInt(ageS);
-
+                age = Number(ageS);
         while (isNaN(age) || !age) {
-            age = prompt('Введите возраст правильно! (в годах)');
+            ageS = prompt('Введите возраст правильно! (в годах)');
+            age = Number(ageS);
         }
 
         let
