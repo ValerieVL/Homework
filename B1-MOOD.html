@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Выбор случайных цветов радуги</title>
+</head>
+<body>
+<script>
+
+    function RandomDiap(N, M) {
+        return Math.floor(Math.random() * (M - N + 1)) + N;
+    }
+
+    function Mood(ColorsCount) {
+        var ColorsA = ['', 'красный', 'оранжевый', 'жёлтый', 'зелёный', 'голубой', 'синий', 'фиолетовый'];
+        var UsedColors = {};
+        console.log('цветов: ' + ColorsCount);
+        for (var i = 1; i <= ColorsCount; i++) {
+            do {
+                var N = RandomDiap(1, 7);
+            }
+            while (N in UsedColors);
+            UsedColors[N]=true;
+            var ColorName = ColorsA[N];
+            console.log(ColorName);
+        }
+    }
+
+    Mood(3);
+
+</script>
+</body>
+</html>
