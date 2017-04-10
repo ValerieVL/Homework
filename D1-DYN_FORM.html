@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DYN_FORM</title>
+    <script>
+        "use strict";
+        window.onload = function () {
+            dynForm(nameForm, arrForm);
+        };
+
+        var nameForm = "INFO";
+        var arrForm = [
+            {label: "Разработчики: ", name: "FIO", type: "text", size: 40},
+            {label: "Название сайта: ", name: "Site", type: "text", size: 40},
+            {label: "URL сайта: ", name: "URL", type: "text", size: 30},
+            {label: "Дата запуска сайта: ", name: "Date", type: "text", size: 10},
+            {label: "Посетителей в сутки: ", name: "Visits", type: "text", size: 10},
+            {label: "Email для связи: ", name: "Email", type: "text", size: 20},
+            {
+                label: "Рубрика каталога: ", name: "Catalog", type: "dropdown", options: [
+                "бытовая техника",
+                "литература",
+                "мягкие игрушки"
+            ]
+            },
+            {
+                label: "Размещение: ", name: "Place", type: "radio", options: [
+                "бесплатное",
+                "платное",
+                "VIP"
+            ]
+            },
+            {label: "Разрешить отзывы: ", name: "AGREE", type: "checkbox"},
+            {label: "Описание сайта: ", name: "Desc", type: "textarea", rows: 10, cols: 70},
+            {value: "Опубликовать:)", name: "ok", type: "submit"}
+
+        ];
+
+        function dynForm(nameForm, arrForm) {
+            var frm = document.forms[nameForm];
+
+
+            arrForm.forEach(function (item, i, arrForm) {
+                        // создаем label
+                        var newLabel = document.createElement('label');
+
+                        var type = arrForm[i].type;
+                        var size = arrForm[i].size;
+                        var newTag;
+
+                        // добавляем label к полю
+                        frm.appendChild(newLabel);
+
+                        // записываем текст в label
+                        newLabel.textContent = arrForm[i].label;
+
+
+                        if (type == "text" || type == "checkbox") {
+
+                            // создаем новый тэг
+                            newTag = newTagForm('input');
+                            newTag.type = type;
+                            if (type == "text")
+                                newTag.size = size;
+
+                        } else if (type == "radio") {
+
+                            var radioOptions = arrForm[i].options;
+                            radioOptions.forEach(function (item2, j) {
+
+                                var tagInput = document.createElement('input');
+                                tagInput.type = type;
+                                tagInput.name = arrForm[i].name;
+
+                                var tagLabel = document.createElement('label');
+                                frm.appendChild(tagLabel);
+
+                                tagLabel.appendChild(tagInput);
+
+                                var textRadio = document.createTextNode(item2);
+                                tagLabel.appendChild(textRadio);
+
+                                // добавляем value у option
+                                tagInput.value = 10 + ++j;
+                            })
+
+                        } else if (type == "dropdown") {
+
+                            // создаем новый тэг
+                            newTag = newTagForm('select');
+
+                            // вложенный массив options в хэше
+                            var selectOptions = arrForm[i].options;
+
+                            selectOptions.forEach(function (item2, j) {
+                                // добавляем options у select
+                                var newOption = document.createElement('option');
+                                newOption.textContent = item2;
+                                newTag.appendChild(newOption);
+
+                                // добавляем value у option
+                                newOption.value = ++j;
+                            })
+
+                        } else if (type == "textarea") {
+
+                            appendBr(1);
+                            // создаем новый тэг
+                            newTag = newTagForm('textarea');
+                            newTag.rows = arrForm[i].rows;
+                            newTag.cols = arrForm[i].cols;
+
+                        } else if (type == "submit") {
+
+                            newTag = newTagForm('input');
+                            newTag.type = type;
+                            newTag.value = arrForm[i].value;
+
+                        }
+
+
+                        function newTagForm(tag) {
+                            // создаем тэг
+                            var newTag = document.createElement(tag);
+                            frm.appendChild(newTag);
+                            newTag.name = arrForm[i].name;
+                            return newTag;
+                        }
+
+
+                        appendBr(2);
+
+                        // добавление тега br
+                        function appendBr(numberBr) {
+                            for (var b = 0; b < numberBr; b++) {
+                                var newBr = document.createElement('br');
+                                frm.appendChild(newBr);
+                            }
+
+                        }
+
+
+                    }
+            )
+
+        }
+
+
+        //            document.addEventListener("DOMContentLoaded", dynForm);
+
+    </script>
+</head>
+<body>
+<form name="INFO" action="http://fe.it-academy.by/TestForm.php" id="qwe"></form>
+</body>
+</html>
